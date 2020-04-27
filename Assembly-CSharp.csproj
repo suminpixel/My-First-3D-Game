@@ -45,6 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
      <Compile Include="Assets\Scripts\Managers\Managers.cs" />
      <Compile Include="Assets\Scripts\Managers\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />

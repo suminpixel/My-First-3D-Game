@@ -7,22 +7,19 @@ public class Managers : MonoBehaviour
 
     static Managers s_instance; //static 으로 유일성 보장되는 매니저 인스턴스 복사
     //매니저.cs 를 모든 컴포넌트에서 구독할 수 있도록 getter 역할의 public class 만듬 (일종의 싱글턴) 
-    public static Managers Instance{
-        get{//유일한 매니져를 반환
-            return s_instance;
-        }
-         
-    }
+    static Managers Instance{ get{return s_instance;} }
+    InputManager _input = new InputManager();
+    public static InputManager Input{ get{return Instance._input;} }
     // Start is called before the first frame update
     void Start()
     {
       Init();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //transform.Rotate(new Vector3(1.0f, 1.0f, 1.0f));
+        _input.OnUpdate();
+       
     }
 
     static void Init(){

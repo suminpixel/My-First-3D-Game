@@ -5,12 +5,17 @@ public class PlayerController : MonoBehaviour
 {
     void Start()
     {
-           
+        //Input Manager 구독
+        Managers.Input.KeyAction -= OnKeyboard; //다른 곳에서 구독하고 있는 경우를 방지하기 위해 우선 -+
+        Managers.Input.KeyAction += OnKeyboard;
     }
 
     float _yAngle = 0.0f;
     float _speed = 10.0f;
-    void Update()
+    void Update(){
+        //업데이트 문에서 직접 키입력을 받는경우 어디서 키입력이 왔는지 모를 수 있다. 따라서 InputManager 로 기능을 별도 분리하였다.
+    }
+    void OnKeyboard()
     {
         _yAngle += Time.deltaTime * _speed;
       
