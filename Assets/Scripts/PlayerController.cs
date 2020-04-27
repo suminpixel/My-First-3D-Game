@@ -1,78 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-//벡터3의 용도 : 
-    //1. 위치 벡터
-    //2. 방향 벡터 관련 기능을 사용할 수 있는 API
-struct MyVector { // x, y, z 값을 가진 벡터 구조체 선언
-    public float x;
-    public float y;
-    public float z;
-
-    //           +
-    //      +    +
-    // + ------- +
-    public float magnitude{
-        get {return Mathf.Sqrt(x*x + y*y + z*z);} //(피타고라스) 3차원 벡터의 크기를 구해 리턴
-    }
-    public MyVector normalized { get { return new MyVector (x/  magnitude, y / magnitude,  z/ magnitude);}} // 크기가 1인 단위벡터 리턴 (방향 추출) ex) (1.0f, 0.0f, 0.0f)
-    public MyVector(float x, float y, float z){ this.x = x; this.y = y; this.z = z;} //생성자 
-    public static MyVector operator +(MyVector a, MyVector b){ //벡터 값 증가 오퍼레이터
-        return new MyVector(a.x + b.x, a.y + b.y , a.z + b.z);
-    }
-     public static MyVector operator -(MyVector a, MyVector b){ //벡터 값 감소 오퍼레이터
-        return new MyVector(a.x - b.x, a.y - b.y , a.z - b.z);
-    }
-     public static MyVector operator *(MyVector a, float b){ //벡터 값 곱
-        return new MyVector(a.x * b, a.y * b , a.z * b);
-    }
-}
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] 
-    float _speed = 10.0f;
-    //public GameObject _obg ;
-
-    // Start is called before the first frame update
     void Start()
     {
-        
-        MyVector to = new MyVector(10.0f, 0.0f, 0.0f);
-        MyVector from = new MyVector(5.0f, 0.0f, 0.0f);
-
-        //방향 벡터 
-            //1. 거리(크기) - magnitude
-            //2. 실제 방향
-        MyVector dir = to - from;
-        dir.normalized;
-        MyVector newPos = from + dir * _speed;
-       
+           
     }
 
-    // GameObejct (Player)
-        //Transform
-        //PlayerController (*)
-
+    float _yAngle = 0.0f;
+    float _speed = 10.0f;
     void Update()
     {
-        //transform.TransformDirection() : Local -> World
-        //transform.InverseTransformDirection() : World -> Local
+        _yAngle += Time.deltaTime * _speed;
+      
+        //Rotate 방법
+            //1. 절대 회전 값으로 회전
+            //transform.eulerAngles = new Vector3(0.0f, _yAngle, 0.0f);
 
-        //transform.position.magnitude();
-        //transform.position.normalized();
+            //2. 특정 축 기준으로 회전 +- delta 
+            //transform.Rotate(new Vector3(0.0f, Time.deltaTime * 100.0f, 0.0f));
+
+            //3. 쿼터니언 사용 : x, y, z, w
+            // 쿼터니언이란 ? 3차원 그래픽에서 회전을 표현할 때 행렬대신 사용하는 수학적 개념. 4차원 복소수 공간의 벡터로서 q = <w, z, y, z> 로 나타낼 수 있다. 행렬연산에 비해 속도가 빠르고 차지하는 메모리의양이 적도 오류 확률이 낮다.
+            // transform.rotation = Quaternion.Euler(new Vector3(0.0f, _yAngle, 0.0f));
+        
         if(Input.GetKey(KeyCode.W)){
-            //new Vector3(0.0f, 0.0f, 1.0f)
-            transform.Translate(Vector3.forward * Time.deltaTime * _speed);
+            //transform.rotation = Quaternion.LookRotation(Vector3.forward);
+
+            //Slerp(from, to , 중간값 단위 포인트 0~1.0f 사이)
+            transform.rotation = Quaternion.Slerp(transform.rotation , Quaternion.LookRotation(Vector3.forward), 0.2f);
+            transform.position += Vector3.forward * Time.deltaTime * _speed;
         }
         if(Input.GetKey(KeyCode.S)){
-            transform.Translate(Vector3.back * Time.deltaTime * _speed);
+            transform.rotation = Quaternion.Slerp(transform.rotation , Quaternion.LookRotation(Vector3.back), 0.2f);
+            transform.position += Vector3.back * Time.deltaTime * _speed;
         }
         if(Input.GetKey(KeyCode.A)){
-            transform.position += transform.TransformDirection(Vector3.left * Time.deltaTime * _speed);
+            transform.rotation = Quaternion.Slerp(transform.rotation , Quaternion.LookRotation(Vector3.left), 0.2f);
+            transform.position += Vector3.left * Time.deltaTime * _speed;
         }
         if(Input.GetKey(KeyCode.D)){
-            transform.position += transform.TransformDirection(Vector3.right * Time.deltaTime * _speed);
+            transform.rotation = Quaternion.Slerp(transform.rotation , Quaternion.LookRotation(Vector3.right), 0.2f);
+            transform.position += Vector3.right * Time.deltaTime * _speed;
         }
     }
 }
