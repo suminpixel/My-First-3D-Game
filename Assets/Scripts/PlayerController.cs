@@ -1,17 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class PlayerController : MonoBehaviour
+
+
+class Tank
 {
+    public float speed = 10.0f;
+    Player player; //포함 관계 : Nested Prefeb(중첩된 프리펫)
+}
+class Player {
+
+}
+public class PlayerController : MonoBehaviour
+{   
+    [SerializeField]
+    float _speed = 10.0f;
     void Start()
     {
         //Input Manager 구독
         Managers.Input.KeyAction -= OnKeyboard; //다른 곳에서 구독하고 있는 경우를 방지하기 위해 우선 -+
         Managers.Input.KeyAction += OnKeyboard;
+
+        Tank tank1 = new Tank();
     }
 
     float _yAngle = 0.0f;
-    float _speed = 10.0f;
+    
     void Update(){
         //업데이트 문에서 직접 키입력을 받는경우 어디서 키입력이 왔는지 모를 수 있다. 따라서 InputManager 로 기능을 별도 분리하였다.
     }
