@@ -7,16 +7,30 @@ using UnityEngine;
 public class InputManager 
 {
     public Action KeyAction = null; // need 'import Stystem'
-
+    public Action<Define.MouseEvent> MouseEvent = null;
+    bool _pressed = false; 
     public void OnUpdate()
     {
-        if(Input.anyKey == false){ // 키 입력이 없는경우
-            return;
-        }
-
-        if(KeyAction != null){ 
+       
+        if(KeyAction != null && Input.anyKey ){ 
             KeyAction.Invoke(); //대리자 실행
         }
+
+        //추후 클릭, 드래그 등의 기능 정의 가능
+        if(MouseEvent != null){
+            if(Input.GetMouseButton(0)){
+                MouseEvent.Invoke(Define.MouseEvent.Press); //한번 눌렀을 때
+                _pressed = true;
+
+            }else{
+                if(_pressed){
+                    MouseEvent.Invoke(Define.MouseEvent.Click); //눌렀다 뗀 순간
+                    _pressed = false;
+                }
+            }   
+        }
+
+        
     }
 
 }
