@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//참고용 
 //벡터3의 용도 : 
     //1. 위치 벡터
     //2. 방향 벡터 관련 기능을 사용할 수 있는 API

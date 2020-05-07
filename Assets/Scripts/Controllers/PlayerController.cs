@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 {   
     [SerializeField]
     float _speed = 10.0f;
-    bool _moveToDest = false;
+    bool _moveToDest = false; //움직임
     Vector3 _desPos;
     void Start()
     {
@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
     }
 
     float _yAngle = 0.0f;
-    
+    float wait_run_ratio = 0;
     void Update(){
         //업데이트 문에서 직접 키입력을 받는경우 어디서 키입력이 왔는지 모를 수 있다. 따라서 InputManager 로 기능을 별도 분리하였다.
-        if(_moveToDest){
+        if(_moveToDest){ 
             Vector3 dir = _desPos - transform.position; //클릭한 위치 - 현재 사용자의 위치 = 방향 벡터
 
             if(dir.magnitude < 0.0001f){ //거리가 클릭 위치와 가까워졌다면 멈춰야함
@@ -45,6 +45,22 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+
+        if(_moveToDest){//움직이고 있다면 
+            wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime); //0에서 1사이의 값을 섞음 (Lerp)
+            Animator anim = GetComponent<Animator>();
+            anim.SetFloat("wait_run_ratio", wait_run_ratio); //블랜드한 애니메이션의 변수를 조작 
+
+            anim.Play("WAIT_RUN");
+
+            
+        }else{
+            Animator anim = GetComponent<Animator>();
+            wait_run_ratio = Mathf.Lerp(wait_run_ratio, 0, 10.0f * Time.deltaTime); //0에서 1사이의 값을 섞음
+            anim.SetFloat("wait_run_ratio", wait_run_ratio); //블랜드한 애니메이션의 변수를 조작
+            anim.Play("WAIT_RUN");
+        }
+        
     }
     void OnKeyboard()
     {
@@ -63,20 +79,23 @@ public class PlayerController : MonoBehaviour
         
         if(Input.GetKey(KeyCode.W)){
             //transform.rotation = Quaternion.LookRotation(Vector3.forward);
-
+         
             //Slerp(from, to , 중간값 단위 포인트 0~1.0f 사이)
             transform.rotation = Quaternion.Slerp(transform.rotation , Quaternion.LookRotation(Vector3.forward), 0.2f);
             transform.position += Vector3.forward * Time.deltaTime * _speed;
         }
         if(Input.GetKey(KeyCode.S)){
+          
             transform.rotation = Quaternion.Slerp(transform.rotation , Quaternion.LookRotation(Vector3.back), 0.2f);
             transform.position += Vector3.back * Time.deltaTime * _speed;
         }
         if(Input.GetKey(KeyCode.A)){
+           
             transform.rotation = Quaternion.Slerp(transform.rotation , Quaternion.LookRotation(Vector3.left), 0.2f);
             transform.position += Vector3.left * Time.deltaTime * _speed;
         }
         if(Input.GetKey(KeyCode.D)){
+           
             transform.rotation = Quaternion.Slerp(transform.rotation , Quaternion.LookRotation(Vector3.right), 0.2f);
             transform.position += Vector3.right * Time.deltaTime * _speed;
         }
@@ -84,7 +103,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnMouseClicked(Define.MouseEvent evt){
         if(evt != Define.MouseEvent.Click){
-            return;
+            //return;
         }
         Debug.Log($"OnMouseClicked");
 
