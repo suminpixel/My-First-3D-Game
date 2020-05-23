@@ -77,4 +77,31 @@ public class note_vector : MonoBehaviour
             transform.position += transform.TransformDirection(Vector3.right * Time.deltaTime * _speed);
         }
     }
+
+
+    /*
+    //파라매터로 직업이름을 받는 Move()함수를 상속s
+    class Player {
+        private string name = "플레이어";
+        public void Move(string who){
+            if(who != null){
+                name = who;
+            }
+            Console.WriteLine($"{name} 이동!");
+        }
+    }
+    //오버라이딩 할 수 있도록 하는 가상함수 
+    class Player2 {
+        public virtual void Move2(){
+            Console.WriteLine("Player 이동!");
+        }
+
+    }
+    */
+    
 }
+
+
+
+
+//

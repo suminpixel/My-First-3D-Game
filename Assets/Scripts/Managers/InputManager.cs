@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 //키보드 컨트롤 매니저 
 public class InputManager 
@@ -11,6 +12,12 @@ public class InputManager
     bool _pressed = false; 
     public void OnUpdate()
     {
+        //버튼, UI 클릭은 무시
+        if(EventSystem.current.IsPointerOverGameObject()){
+            Debug.Log("-- UI Clicked");
+            return;
+        }
+       
        
         if(KeyAction != null && Input.anyKey ){ 
             KeyAction.Invoke(); //대리자 실행

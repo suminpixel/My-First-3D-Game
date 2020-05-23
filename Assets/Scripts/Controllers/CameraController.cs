@@ -27,11 +27,11 @@ public class CameraController : MonoBehaviour
      
             // 카메라가 쏘는 레이캐스팅에 벽이 걸려든 경우
             if(Physics.Raycast(_player.transform.position, _delta, out hit, _delta.magnitude, LayerMask.GetMask("Wall"))){
-                Debug.Log("-- (Wall) zoom move ");
+                //Debug.Log("-- (Wall) zoom move ");
                 float dist = (hit.point - _player.transform.position).magnitude * 0.8f;
                 transform.position = _player.transform.position + _delta.normalized * dist;
             }else{
-                Debug.Log("-- just move ");
+                //Debug.Log("-- just move ");
                 transform.position = _player.transform.position + _delta; //플레이어 방향 벡터에 * 카메라 현재 좌표 더하기
                 transform.LookAt(_player.transform); //(특정 오브젝트)의 방향을 바라보게 회전(주시)
    
