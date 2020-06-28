@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//경로를 통해 데이터를 로드하거나
+//경로를 통해 데이터를 로드하거나$
 //프리팻 인스턴스를 복사/desctory
 public class ResourceManager 
 {

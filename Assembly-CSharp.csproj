@@ -43,8 +43,12 @@
      <Compile Include="Assets\Scripts\Managers\ResourceManager.cs" />
      <Compile Include="Assets\Scripts\PrefabTest.cs" />
      <Compile Include="Assets\Scripts\TestCollision.cs" />
+     <Compile Include="Assets\Scripts\UI\UI_Base.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Button.cs" />
+     <Compile Include="Assets\Scripts\UI\UI_EventHandler.cs" />
      <Compile Include="Assets\Scripts\Utils\Define.cs" />
+     <Compile Include="Assets\Scripts\Utils\Extension.cs" />
+     <Compile Include="Assets\Scripts\Utils\Util.cs" />
      <Compile Include="Assets\Scripts\note_vector.cs" />
      <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_fuku.shader" />
      <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_akarami_blend.shader" />

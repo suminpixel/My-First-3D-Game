@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         Managers.Input.MouseEvent += OnMouseClicked;
         //Tank tank1 = new Tank();
 
-        Managers.Resource.Instantiate("UI/UI_Button"); //UI 폴더에 있는 cs 파일 구독
+        //Managers.Resource.Instantiate("UI/UI_Button"); //UI 폴더에 있는 cs 파일 구독
 
     }
 
