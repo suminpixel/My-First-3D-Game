@@ -11,12 +11,18 @@ public class ResourceManager
    }
 
     public GameObject Instantiate(string path, Transform parent = null){ 
-       GameObject prefab = Load<GameObject>($"Prefabs/{path}"); //프리팹 폴더의 해당 패쓰의 게임 오프젝트를 반환
+
+        GameObject prefab = Load<GameObject>($"Prefabs/{path}"); //프리팹 폴더의 해당 패쓰의 게임 오프젝트를 반환
         if(prefab == null){
-            Debug.Log($"Failed to load prefab");    
+            Debug.Log($"Failed to load prefab : {path}");    
             return null;
         }
-        return Object.Instantiate(prefab, parent);
+        GameObject go = Object.Instantiate(prefab, parent);
+        int index = go.name.IndexOf("(Clone)");
+        if (index > 0)
+            go.name = go.name.Substring(0, index);
+
+        return go;
    }
 
 

@@ -6,14 +6,16 @@ using UnityEngine;
 // 파라매터로 이름 받음
 public class Util{
 
-    public static T GetOrAddComponent<T>(GameObject go) where T: UnityEngine.Component{
+    public static T GetOrAddComponent<T>(GameObject go) where T : UnityEngine.Component
+    {
         T component = go.GetComponent<T>();
-        if(component == null){
-            component = go.AddComponent<T>();
-        }
-            return component;
         
-    }
+		if (component == null)
+            component = go.AddComponent<T>();
+
+        return component;
+	}
+
 
     //1. GameObj 를 받아 child GameObj 를 리턴
     public static GameObject FindChild(GameObject go, string name = null, bool recursive = false) {

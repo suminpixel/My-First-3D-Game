@@ -11,9 +11,10 @@ using UnityEngine.EventSystems;
 public class UI_Base : MonoBehaviour
 {
   
-    protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary< Type,UnityEngine.Object[]>();
+    protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
 
-
+    
+    //_object 필드에 특정 타입의 UI컴포넌트를 배열로 삽입
     protected void Bind<T>(Type type) where T :UnityEngine.Object{
         
         string[] names = Enum.GetNames(type);  // 타입들을 스트링 배열로 반환
@@ -35,6 +36,7 @@ public class UI_Base : MonoBehaviour
         }
     }
 
+    // index 번호로 _object 필드에 있는 UI 컴포넌트 리턴
     protected T Get<T>(int idx) where T : UnityEngine.Object{
         UnityEngine.Object[] objects = null;
         if(_objects.TryGetValue(typeof(T), out objects) == false){
