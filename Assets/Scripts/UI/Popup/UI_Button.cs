@@ -33,7 +33,14 @@ public class UI_Button : UI_Popup
     }
 
     private void Start(){
+        Init();
         
+    }
+
+
+    public override void Init(){
+        base.Init(); //부모의 init 까지 호출
+
         //base.Init();
         
         Bind<Button>(typeof(Buttons)); //리플렉션을 이용해서 Button의 enum 타입을 넘김(바인딩)
@@ -54,10 +61,13 @@ public class UI_Button : UI_Popup
         
         //BindEvent(go, (PointerEventData data) => { go.transform.position = data.position; }, Define.UIEvent.Drag);
 
+
     }
 
 
     int _score = 0;
+
+
     public void OnButtonClicked(PointerEventData data)
     {
         _score ++;
