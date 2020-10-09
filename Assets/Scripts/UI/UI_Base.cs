@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 //C# 리플렉션 : 
 //프로그램 실행 도중에 최상위 객체의 정보를 조사하거나, 다른 모듈에 선언된 인스턴스를 생성하거나, 기존 개체에서 형식을 가져오고 해당하는 메소드를 호출, 또는 해당 필드와 속성에 접근할 수 있는 기능
 // getType() : 타입 조회 , getMembers() : 멤버조회, getMothods(): 메소드 목록 가져옴
-public class UI_Base : MonoBehaviour
+public abstract class UI_Base : MonoBehaviour
 {
   
     protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();

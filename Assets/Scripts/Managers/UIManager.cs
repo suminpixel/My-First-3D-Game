@@ -37,22 +37,19 @@ public class UIManager
             canvas.sortingOrder = 0;
         }
     }
+    public T ShowSceneUI<T>(string name = null) where T : UI_Scene
+   {
+      if (string.IsNullOrEmpty(name))
+         name = typeof(T).Name;
 
-    public T ShowSceneUI<T>(string name = null) where T : UI_Scene{
-
-        if(string.IsNullOrEmpty(name))
-            name = typeof(T).Name;
-
-        Debug.Log(name);
-        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
-
-        T sceneUI = Util.GetOrAddComponent<T>(go);
+      GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
+      T sceneUI = Util.GetOrAddComponent<T>(go);
         _sceneUI = sceneUI;
 
-        go.transform.SetParent(Root.Transform); // 해당 obj를 root obj 자식으로 지정
-    
-        return sceneUI;
-    }
+      go.transform.SetParent(Root.transform);
+
+      return sceneUI;
+   }
 
     //팝업 컴포의 이름을 받아 가져오는 매서드
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup{
@@ -67,10 +64,12 @@ public class UIManager
         _popupStack.Push(popup);
 
 
-        go.transform.SetParent(Root.Transform); // 해당 obj를 root obj 자식으로 지정
+        go.transform.SetParent(Root.transform); // 해당 obj를 root obj 자식으로 지정
     
         return popup;
     }
+
+
 
     public void ClosePopupUI(UI_Popup popup){
         if(_popupStack.Count == 0){
