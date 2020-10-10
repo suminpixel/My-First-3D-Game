@@ -19,7 +19,8 @@ public class UI_Inven : UI_Scene
         
     }
 
-    void Init(){
+    public override void Init(){
+
         base.Init();
         Bind<GameObject>(typeof(GameObjects));
     
@@ -30,8 +31,10 @@ public class UI_Inven : UI_Scene
         //실제 인벤토리 데이터를 참고하여 Inven Item 삽입
         for(int i = 0; i < 8 ; i++){
             //현재는 임시로 더미 데이터 8개
-            GameObject item = Managers.Resource.Instantiate("UI/Scene/UI_Inven_Items");
+            GameObject item = Managers.Resource.Instantiate("UI/Scene/UI_Inven_Item");
             item.transform.SetParent(gridPanel.transform); //game obj의 부모를 지정해 연결
+
+            Util.GetOrAddComponent<UI_Inven_Item>(item);
 
         }
     }

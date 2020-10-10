@@ -14,6 +14,8 @@ public abstract class UI_Base : MonoBehaviour
     protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
 
     
+    public abstract void Init();
+    
     //_object 필드에 특정 타입의 UI컴포넌트를 배열로 삽입
     protected void Bind<T>(Type type) where T :UnityEngine.Object{
         
