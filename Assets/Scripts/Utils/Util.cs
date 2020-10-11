@@ -26,7 +26,7 @@ public class Util{
             return null;
         }
     }
-    //.GameObj 를 받아 child GameObj 를 리턴
+    //2.GameObj 를 받아 child GameObj 를 리턴
     public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T: UnityEngine.Object{
       
         if(go == null){

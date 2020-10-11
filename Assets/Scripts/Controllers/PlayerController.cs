@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
 class Tank
 {
     public float speed = 10.0f;
@@ -11,38 +11,38 @@ class Tank
 class Player {
 
 }
-
+*/
 
 public class PlayerController : MonoBehaviour
 {   
     [SerializeField]
-    float _speed = 10.0f;
-   //bool _moveToDest = false; //움직임
-    Vector3 _desPos;
+    float _speed = 10.0f; //스피드 설정
+
+    //bool _moveToDest = false; //움직임 여부
+    //float _yAngle = 0.0f;
+    //float wait_run_ratio = 0;
+
+    Vector3 _desPos; //플레이어의 위치 데이터 (벡터3)
+
     void Start()
     {
         //Input Manager 구독/
+
         /*
-        Managers.Input.KeyAction -= OnKeyboard; //다른 곳에서 구독하고 있는 경우를 방지하기 위해 우선 -+
+        Managers.Input.KeyAction -= OnKeyboard; 
         Managers.Input.KeyAction += OnKeyboard;
         */
-        Managers.Input.MouseEvent -= OnMouseClicked;
+        Managers.Input.MouseEvent -= OnMouseClicked; //다른 곳에서 구독하고 있는 경우를 방지하기 위해 우선 -- 후 +
         Managers.Input.MouseEvent += OnMouseClicked;
         
+        //TEMP : 아래 코드들은 테스트용 코드 
         //Tank tank1 = new Tank();
-
         //Managers.Resource.Instantiate("UI/UI_Button"); //UI 폴더에 있는 cs 파일 구독
-        Managers.UI.ShowPopupUI<UI_Button>("UI_Button");
-
-        //TEMP
+        //Managers.UI.ShowPopupUI<UI_Button>("UI_Button");
         Managers.UI.ShowSceneUI<UI_Inven>();
+
     }
 
-    float _yAngle = 0.0f;
-    //float wait_run_ratio = 0;
-
-
-        
     public enum PlayerState{    //다양한 애니메이션 상태 state 를 정리한것 : State Machine
         Die,
         Moving,
@@ -53,24 +53,34 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    PlayerState _state = PlayerState.Idle;
+    PlayerState _state = PlayerState.Idle; //플레이어의 기본상태 죽음
 
     void UpdateDie(){
-
+        // TODO : 죽었을 때 처리 아무것도 못함
     }
 
     void UpdateMoving(){
+
         Vector3 dir = _desPos - transform.position; //클릭한 위치 - 현재 사용자의 위치 = 방향 벡터
 
-        if(dir.magnitude < 0.0001f){ //거리가 클릭 위치와 가까워졌다면 멈춰야함
+        if(dir.magnitude < 0.0001f){ 
+            //거리가 클릭 위치와 가까워졌다면 멈춤
             _state = PlayerState.Idle;
         }else{
-            float moveDist = Mathf.Clamp(_speed * Time.deltaTime, 0, dir.magnitude); //min~max 사이의 값
             
+            float moveDist = Mathf.Clamp(_speed * Time.deltaTime, 0, dir.magnitude); //min~max 사이의 값
+    
             transform.position += dir.normalized * moveDist;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
         
         }
+
+        // 애니메이션
+		Animator anim = GetComponent<Animator>();
+		// 현재 게임 상태에 대한 정보를 넘겨준다
+		anim.SetFloat("speed", _speed);
+
+        /*
         if(_state == PlayerState.Moving){//움직이고 있다면 
             //wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime); //0에서 1사이의 값을 섞음 (Lerp)
             //Animator anim = GetComponent<Animator>();
@@ -80,15 +90,17 @@ public class PlayerController : MonoBehaviour
 
             
         }
+        */
 
     }   
 
     void UpdateIdle(){
 
-                Animator anim = GetComponent<Animator>();
-                //ㅌㅊwait_run_ratio = Mathf.Lerp(wait_run_ratio, 0, 10.0f * Time.deltaTime); //0에서 1사이의 값을 섞음
-                //anim.SetFloat("wait_run_ratio", wait_run_ratio); //블랜드한 애니메이션의 변수를 조작
-                //anim.Play("WAIT_RUN");
+        Animator anim = GetComponent<Animator>();
+        anim.SetFloat("speed", 0);
+        //ㅌㅊwait_run_ratio = Mathf.Lerp(wait_run_ratio, 0, 10.0f * Time.deltaTime); //0에서 1사이의 값을 섞음
+        //anim.SetFloat("wait_run_ratio", wait_run_ratio); //블랜드한 애니메이션의 변수를 조작
+        //anim.Play("WAIT_RUN");
             
     }
  
@@ -156,14 +168,15 @@ public class PlayerController : MonoBehaviour
         if(evt != Define.MouseEvent.Click){
             //return;
         }
-        Debug.Log($"OnMouseClicked");
+        Debug.Log($"마우스 클릭 이벤트 실행 : OnMouseClicked");
 
+        // 마우스 클릭시 레이 캐스팅
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
         LayerMask mask = LayerMask.GetMask("Wall");
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, 100.0f, mask)){ //layer 8, 9번인 오브젝트가 hit 된다면
 
+        if(Physics.Raycast(ray, out hit, 100.0f, mask)){ //layer 8, 9번인 오브젝트가 hit 된다면
             _desPos = hit.point ;
             _state = PlayerState.Moving;
             Debug.Log($"Raycast Camera @ {hit.collider.gameObject.tag} /{hit.collider.gameObject.name}");

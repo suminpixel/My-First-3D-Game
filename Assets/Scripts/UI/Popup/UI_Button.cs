@@ -34,14 +34,12 @@ public class UI_Button : UI_Popup
 
     private void Start(){
         Init();
-        
     }
 
 
     public override void Init(){
-        base.Init(); //부모의 init 까지 호출
 
-        //base.Init();
+        base.Init(); //부모의 init 까지 호출
         
         Bind<Button>(typeof(Buttons)); //리플렉션을 이용해서 Button의 enum 타입을 넘김(바인딩)
         Bind<Text>(typeof(Texts));
@@ -50,12 +48,12 @@ public class UI_Button : UI_Popup
 
         //GetText((int) Texts.ScoreText).text = "Bind Text";
 
-        GetButton((int)Buttons.PointButton).gameObject.AddUIEvent(OnButtonClicked); // 아래 처럼 여러줄로 하지 않고 1줄로 처리 (Util > Extension.cs)
+        GetButton((int)Buttons.PointButton).gameObject.BindEvent(OnButtonClicked); // 아래 처럼 여러줄로 하지 않고 1줄로 처리 (Util > Extension.cs)
         //GetButton((int)Buttons.PointButton).gameObject.BindEvent(OnButtonClicked);
 
         GameObject go = GetImage((int)Images.ItemIcon).gameObject; // ItemIcon 이라는 이름의 GameImage를 받아옴
         
-        AddUIEvent(go, ((PointerEventData data)=>{  
+        BindEvent(go, ((PointerEventData data)=>{  
             go.transform.position = data.position;
         }), Define.UIEvent.Drag);
         

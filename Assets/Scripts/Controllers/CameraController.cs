@@ -8,16 +8,21 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     Define.CameraMode _mode = Define.CameraMode.QuaterView;
     [SerializeField]
-    Vector3 _delta;
+    Vector3 _delta = new Vector3(0.0f, 6.0f, -5.0f);
+
     [SerializeField]
-    GameObject _player ;
+    GameObject _player = null;
+
     void Start()
     {
         
     }
 
+    //LateUpdate : Update 문에서 캐릭터의 좌표이동이 이루어지고 있기 때문에 
+    //카메라 이동과 캐릭터 이동 순서가 충돌하여 버벅거리는 현상이 있을 수 있어, 
+    //업데이트 이후 카메라 이동하여 해당 현상 해결
   
-    void LateUpdate() //LateUpdate : Update 문에서 캐릭터의 좌표이동이 이루어지고 있기 때문에 카메라 이동과 캐릭터 이동 순서가 충돌하여 버벅거리는 현상이 있을 수 있어, 업데이트 이후 카메라 이동하여 해당 현상 해결
+    void LateUpdate() 
     {
         
         if(_mode == Define.CameraMode.QuaterView){
