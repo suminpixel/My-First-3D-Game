@@ -14,6 +14,7 @@ public class Managers : MonoBehaviour
 
     //기타 매니저들 인스턴스 생성 및 연결
     InputManager _input = new InputManager();
+    SceneMangesrEx _scene = new SceneMangesrEx();
     ResourceManager _resorce = new ResourceManager();
     UIManager _ui = new UIManager();
 
@@ -22,6 +23,9 @@ public class Managers : MonoBehaviour
     public static ResourceManager Resource{ get{return Instance._resorce;}}
     public static UIManager UI{ get{return Instance._ui;}}
     
+    public static SceneMangesrEx Scene{ get{return Instance._scene;}}
+    
+
     void Start()
     {
       Init();
