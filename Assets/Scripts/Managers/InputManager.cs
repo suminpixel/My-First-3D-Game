@@ -42,4 +42,11 @@ public class InputManager
         
     }
 
+    //씬마다 마우스액션, 키액션이 다를수 있어서 정리해주는 함수 
+    public void Clear()
+    {
+        KeyAction = null;
+        MouseEvent = null;
+    }
+
 }

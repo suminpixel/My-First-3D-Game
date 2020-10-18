@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneMangesrEx 
+public class SceneMangersEx 
 {
     public BaseScene CurrentScene{ // 현재 사용중인 씬 리턴
         get{
@@ -13,7 +13,8 @@ public class SceneMangesrEx
 
     //씬 로드
     public void LoadScene(Define.Scene type){
-        CurrentScene.Clear(); //현재 씬을 클리어 후에
+        Managers.Clear();
+        //CurrentScene.Clear(); //현재 씬을 클리어 후에
         SceneManager.LoadScene(GetSceneName(type)); //새로 원하는 씬 로드 
     }
 
@@ -23,6 +24,9 @@ public class SceneMangesrEx
         return name;
     }
 
-
+    public void Clear()
+    {
+        CurrentScene.Clear();
+    }
 
 }

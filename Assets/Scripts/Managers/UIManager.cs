@@ -118,5 +118,10 @@ public class UIManager
 		return Util.GetOrAddComponent<T>(go);
 	}
 
+    //씬마다 유아이가 다르니 스택 비워주는 함수
+    public void Clear(){
+        CloseAllPopupUI();
+        _sceneUI = null;
+    }
     
 }

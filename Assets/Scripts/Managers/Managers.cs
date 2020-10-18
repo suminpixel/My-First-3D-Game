@@ -14,17 +14,17 @@ public class Managers : MonoBehaviour
 
     //기타 매니저들 인스턴스 생성 및 연결
     InputManager _input = new InputManager();
-    SceneMangesrEx _scene = new SceneMangesrEx();
+    SceneMangersEx _scene = new SceneMangersEx();
     ResourceManager _resorce = new ResourceManager();
     UIManager _ui = new UIManager();
+    SoundManager _sound = new SoundManager();
 
 
     public static InputManager Input{ get{return Instance._input;} }
     public static ResourceManager Resource{ get{return Instance._resorce;}}
     public static UIManager UI{ get{return Instance._ui;}}
-    
-    public static SceneMangesrEx Scene{ get{return Instance._scene;}}
-    
+    public static SceneMangersEx Scene{ get{return Instance._scene;}}
+    public static SoundManager Sound{ get{return Instance._sound;} }
 
     void Start()
     {
@@ -46,7 +46,16 @@ public class Managers : MonoBehaviour
             }
             DontDestroyOnLoad(go); //해당 파일이 삭제되지 않게 명시
             s_instance = go.GetComponent<Managers>(); //@Managers.cs > static Managers 인스턴스 참조
+
+            s_instance._sound.Init();//sound manger 불러들어서 게임 진행 내내 쓰일 SoundManager.cs 의 audioSource 배열을 채워줌 
         }
+    }
+    static void Clear(){
+        Input.Clear();
+        Sound.Clear();
+        Scene.Clear();
+        UI.Clear();
+        
     }
 }
 

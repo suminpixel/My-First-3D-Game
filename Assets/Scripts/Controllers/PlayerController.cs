@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         // 애니메이션
 		Animator anim = GetComponent<Animator>();
 		// 현재 게임 상태에 대한 정보를 넘겨준다
-		anim.SetFloat("speed", _speed);
+		anim.SetFloat("speed",_speed);
 
         /*
         if(_state == PlayerState.Moving){//움직이고 있다면 
@@ -97,7 +97,8 @@ public class PlayerController : MonoBehaviour
     void UpdateIdle(){
 
         Animator anim = GetComponent<Animator>();
-        anim.SetFloat("speed", 0);
+        anim.SetFloat("speed",0);
+        
         //ㅌㅊwait_run_ratio = Mathf.Lerp(wait_run_ratio, 0, 10.0f * Time.deltaTime); //0에서 1사이의 값을 섞음
         //anim.SetFloat("wait_run_ratio", wait_run_ratio); //블랜드한 애니메이션의 변수를 조작
         //anim.Play("WAIT_RUN");
