@@ -11,6 +11,16 @@ public class LoginScene : BaseScene
     {
         base.Init();
         SceneType = Define.Scene.Login;
+
+        //임시로 5개 꺼내고
+        List<GameObject> list = new List<GameObject>();
+        for (int i = 0; i < 5; i++)
+            list.Add(Managers.Resource.Instantiate("unitychan"));
+
+        //메모리에서 바로 날려버리는 임시 코드
+        foreach (GameObject obj in list) {
+            Managers.Resource.Destroy(obj);
+        }
     }
     public override void Clear()
     {

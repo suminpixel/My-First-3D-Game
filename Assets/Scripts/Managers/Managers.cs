@@ -18,6 +18,7 @@ public class Managers : MonoBehaviour
     ResourceManager _resorce = new ResourceManager();
     UIManager _ui = new UIManager();
     SoundManager _sound = new SoundManager();
+    PoolManager _pool = new PoolManager();
 
 
     public static InputManager Input{ get{return Instance._input;} }
@@ -25,6 +26,7 @@ public class Managers : MonoBehaviour
     public static UIManager UI{ get{return Instance._ui;}}
     public static SceneMangersEx Scene{ get{return Instance._scene;}}
     public static SoundManager Sound{ get{return Instance._sound;} }
+    public static PoolManager Pool{get{return Instance._pool;}}
 
     void Start()
     {
@@ -46,16 +48,20 @@ public class Managers : MonoBehaviour
             }
             DontDestroyOnLoad(go); //해당 파일이 삭제되지 않게 명시
             s_instance = go.GetComponent<Managers>(); //@Managers.cs > static Managers 인스턴스 참조
-
+            
+            s_instance._pool.Init();
             s_instance._sound.Init();//sound manger 불러들어서 게임 진행 내내 쓰일 SoundManager.cs 의 audioSource 배열을 채워줌 
         }
     }
-    static void Clear(){
+    
+    public static void Clear()
+    {
         Input.Clear();
         Sound.Clear();
         Scene.Clear();
         UI.Clear();
-        
+        Pool.Clear();//혹시 다른 곳에서 풀링된 옵젝 쓰고있을지 모르니 가장 마지막에 클리어 
     }
+  
 }
 

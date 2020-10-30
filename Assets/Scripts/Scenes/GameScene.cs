@@ -14,6 +14,11 @@ public class GameScene : BaseScene
 
         //인게임 씬에서는 UI 팝업창이 열려~
         Managers.UI.ShowSceneUI<UI_Inven>();
+
+          //임시로
+        for (int i = 0; i < 5; i++){
+            Managers.Resource.Instantiate("UnityChan");
+        }
     }
     public override void Clear()
     {

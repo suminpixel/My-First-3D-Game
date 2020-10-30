@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         // 애니메이션
 		Animator anim = GetComponent<Animator>();
 		// 현재 게임 상태에 대한 정보를 넘겨준다
-		anim.SetFloat("speed",_speed);
+		anim.SetFloat("Speed",_speed);
 
         /*
         if(_state == PlayerState.Moving){//움직이고 있다면 
