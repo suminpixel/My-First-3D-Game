@@ -24,6 +24,8 @@ public class GameScene : BaseScene
         co = StartCoroutine("CoExplodeAfterSeconds", 4.0f);
         StartCoroutine("CoStopExplode", 3.0f);
 
+        Dictionary<int, Stat> dict = Managers.Data.StatDict;
+
     }
     
     IEnumerator CoExplodeAfterSeconds(float seconds){

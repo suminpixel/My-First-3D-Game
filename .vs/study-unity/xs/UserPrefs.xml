@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{A4A51FAC-E02C-9CAD-B603-9F83F78A1F13}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scenes/GameScene.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Managers/DataManager.cs" Line="26" Column="1" />
+      <File FileName="Assets/Scripts/Managers/InputManager.cs" Line="14" Column="25" />
+      <File FileName="Assets/Scripts/Managers/Managers.cs" Line="41" Column="17" />
+      <File FileName="Assets/Scripts/Data/Data.Contents.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/Scenes/GameScene.cs" Line="27" Column="11" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="study-unity" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Data" expanded="True" />
+                <Node name="Managers" expanded="True" />
+                <Node name="Scenes" expanded="True">
+                  <Node name="GameScene.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5b1cf34f-ed9e-4fed-9085-02237a2db274" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
