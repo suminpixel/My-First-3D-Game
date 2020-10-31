@@ -1,5 +1,6 @@
 # study-my-first-3d-game
 
+### 기록
 - UI [바로가기](./Scripts/UI.md)
 - Scene [바로가기](./Scripts/Scene.md)
 - Inventory [바로가기](./Scripts/Inventory.md)
