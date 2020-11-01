@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
         Managers.Input.KeyAction -= OnKeyboard; 
         Managers.Input.KeyAction += OnKeyboard;
         */
-        Managers.Input.MouseEvent -= OnMouseClicked; //다른 곳에서 구독하고 있는 경우를 방지하기 위해 우선 -- 후 +
-        Managers.Input.MouseEvent += OnMouseClicked;
+        Managers.Input.MouseAction -= OnMouseClicked; //다른 곳에서 구독하고 있는 경우를 방지하기 위해 우선 -- 후 +
+        Managers.Input.MouseAction += OnMouseClicked;
         
         //TEMP : 아래 코드들은 테스트용 코드 
         //Tank tank1 = new Tank();
@@ -47,10 +47,9 @@ public class PlayerController : MonoBehaviour
         Die,
         Moving,
         Idle,
-        Channeling,
-        Jumping,
-        Falling,
-
+        //Channeling,
+        //Jumping,
+        //Falling,
     }
 
     PlayerState _state = PlayerState.Idle; //플레이어의 기본상태 죽음
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour
         // 애니메이션
 		Animator anim = GetComponent<Animator>();
 		// 현재 게임 상태에 대한 정보를 넘겨준다
-		anim.SetFloat("Speed",_speed);
+		anim.SetFloat("speed",_speed);
 
         /*
         if(_state == PlayerState.Moving){//움직이고 있다면 
@@ -166,21 +165,20 @@ public class PlayerController : MonoBehaviour
         if(_state == PlayerState.Die){
             return;
         }
-        if(evt != Define.MouseEvent.Click){
-            //return;
-        }
+ 
         Debug.Log($"마우스 클릭 이벤트 실행 : OnMouseClicked");
 
         // 마우스 클릭시 레이 캐스팅
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
-        LayerMask mask = LayerMask.GetMask("Wall");
+
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, 100.0f, mask)){ //layer 8, 9번인 오브젝트가 hit 된다면
+        if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("Wall")))
+        { //layer 8, 9번인 오브젝트가 hit 된다면
             _desPos = hit.point ;
             _state = PlayerState.Moving;
-            Debug.Log($"Raycast Camera @ {hit.collider.gameObject.tag} /{hit.collider.gameObject.name}");
+            Debug.Log($"레이캐스트 : {hit.collider.gameObject.tag} / {hit.collider.gameObject.name}");
         }; 
         
     }

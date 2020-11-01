@@ -47,14 +47,14 @@ public class UIManager
       if (string.IsNullOrEmpty(name))
          name = typeof(T).Name;
 
-      GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
-      T sceneUI = Util.GetOrAddComponent<T>(go);
+        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
+        T sceneUI = Util.GetOrAddComponent<T>(go);
         _sceneUI = sceneUI;
 
-      go.transform.SetParent(Root.transform);
+        go.transform.SetParent(Root.transform);
 
-      return sceneUI;
-   }
+        return sceneUI;
+    }
 
     //팝업 컴포의 이름을 받아 생성(리턴) 하는 매서드
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup{
@@ -100,7 +100,7 @@ public class UIManager
     }
 
     public void CloseAllPopupUI(){
-        while(_popupStack.Count != 0){
+        while(_popupStack.Count > 0){
             ClosePopupUI();
         }
     }

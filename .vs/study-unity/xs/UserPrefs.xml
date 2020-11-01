@@ -1,19 +1,45 @@
 ﻿<Properties StartupConfiguration="{A4A51FAC-E02C-9CAD-B603-9F83F78A1F13}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scenes/GameScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Data/Data.Contents.cs">
     <Files>
-      <File FileName="Assets/Scripts/Scenes/GameScene.cs" Line="27" Column="18" />
+      <File FileName="Assets/Scripts/Scenes/GameScene.cs" Line="60" Column="2" />
+      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="183" Column="9" />
+      <File FileName="Assets/Scripts/Scenes/LoginScene.cs" Line="18" Column="11" />
+      <File FileName="Assets/Scripts/Managers/Managers.cs" Line="67" Column="50" />
+      <File FileName="Assets/Scripts/Managers/InputManager.cs" Line="51" Column="6" />
+      <File FileName="Assets/Scripts/Scenes/BaseScene.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Controllers/CameraController.cs" Line="31" Column="1" />
+      <File FileName="Assets/Scripts/Managers/UIManager.cs" Line="103" Column="34" />
+      <File FileName="Assets/Scripts/UI/UI_Base.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/UI_EventHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/Popup/UI_Popup.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Data/Data.Contents.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="study-unity" expanded="True" selected="True" />
+          <Node name="study-unity" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Controllers" expanded="True" />
+                <Node name="Data" expanded="True">
+                  <Node name="Data.Contents.cs" selected="True" />
+                </Node>
+                <Node name="Managers" expanded="True" />
+                <Node name="Scenes" expanded="True" />
+                <Node name="UI" expanded="True">
+                  <Node name="Popup" expanded="True" />
+                </Node>
+                <Node name="Utils" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5b1cf34f-ed9e-4fed-9085-02237a2db274" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="45f5007d-f214-4ae1-baa3-3f9f5a212353" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -8,15 +8,15 @@ using UnityEngine.EventSystems;
 public class InputManager 
 {
     public Action KeyAction = null; // need 'import Stystem'
-    public Action<Define.MouseEvent> MouseEvent = null;
+    public Action<Define.MouseEvent> MouseAction = null;
     bool _pressed = false; 
 
     public void OnUpdate()
     {
         // 버튼, UI 클릭은 무시
         if(EventSystem.current.IsPointerOverGameObject()){
-            Debug.Log("you click ui obj");
-            return;
+            Debug.Log("UI 영역 클릭");
+           // return;
         }
        
 
@@ -26,27 +26,27 @@ public class InputManager
         }
 
         // TODO: 추후 클릭, 드래그 등의 기능 정의 가능
-        if(MouseEvent != null){
-            if(Input.GetMouseButton(0)){
-                MouseEvent.Invoke(Define.MouseEvent.Press); //한번 눌렀을 때
+        if (MouseAction != null)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                MouseAction.Invoke(Define.MouseEvent.Press);
                 _pressed = true;
-
-            }else{
-                if(_pressed){
-                    MouseEvent.Invoke(Define.MouseEvent.Click); //눌렀다 뗀 순간
-                    _pressed = false;
-                }
-            }   
+            }
+            else
+            {
+                if (_pressed)
+                    MouseAction.Invoke(Define.MouseEvent.Click);
+                _pressed = false;
+            }
         }
 
-        
     }
 
     //씬마다 마우스액션, 키액션이 다를수 있어서 정리해주는 함수 
     public void Clear()
     {
         KeyAction = null;
-        MouseEvent = null;
+        MouseAction = null;
     }
-
 }
