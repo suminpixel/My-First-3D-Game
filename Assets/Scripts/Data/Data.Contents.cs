@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region Stat
+//데이터처럼 긴 파일은 리전으로 구분하여 접었다 폈다하게 관리
+#region Stat 
 
 [Serializable]
 public class Stat

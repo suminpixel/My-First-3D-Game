@@ -1,18 +1,16 @@
 ﻿<Properties StartupConfiguration="{A4A51FAC-E02C-9CAD-B603-9F83F78A1F13}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Data/Data.Contents.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/Scene/UI_Inven.cs">
     <Files>
-      <File FileName="Assets/Scripts/Scenes/GameScene.cs" Line="60" Column="2" />
-      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="183" Column="9" />
-      <File FileName="Assets/Scripts/Scenes/LoginScene.cs" Line="18" Column="11" />
-      <File FileName="Assets/Scripts/Managers/Managers.cs" Line="67" Column="50" />
-      <File FileName="Assets/Scripts/Managers/InputManager.cs" Line="51" Column="6" />
-      <File FileName="Assets/Scripts/Scenes/BaseScene.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Controllers/CameraController.cs" Line="31" Column="1" />
-      <File FileName="Assets/Scripts/Managers/UIManager.cs" Line="103" Column="34" />
-      <File FileName="Assets/Scripts/UI/UI_Base.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/UI_EventHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/Popup/UI_Popup.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Data/Data.Contents.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scenes/GameScene.cs" Line="17" Column="41" />
+      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" />
+      <File FileName="Assets/Scripts/Scenes/LoginScene.cs" />
+      <File FileName="Assets/Scripts/Managers/Managers.cs" />
+      <File FileName="Assets/Scripts/Managers/InputManager.cs" />
+      <File FileName="Assets/Scripts/Scenes/BaseScene.cs" />
+      <File FileName="Assets/Scripts/Managers/UIManager.cs" />
+      <File FileName="Assets/Scripts/UI/UI_EventHandler.cs" />
+      <File FileName="Assets/Scripts/UI/Scene/UI_Scene.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/Scene/UI_Inven.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,14 +18,12 @@
           <Node name="study-unity" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Controllers" expanded="True" />
-                <Node name="Data" expanded="True">
-                  <Node name="Data.Contents.cs" selected="True" />
-                </Node>
-                <Node name="Managers" expanded="True" />
                 <Node name="Scenes" expanded="True" />
                 <Node name="UI" expanded="True">
                   <Node name="Popup" expanded="True" />
+                  <Node name="Scene" expanded="True">
+                    <Node name="UI_Inven.cs" selected="True" />
+                  </Node>
                 </Node>
                 <Node name="Utils" expanded="True" />
               </Node>
