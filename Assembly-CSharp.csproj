@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Utils\Util.cs" />
     <Compile Include="Assets\Scripts\note_vector.cs" />
     <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_fuku.shader" />
+    <None Include="Assets\Town\Readme.txt" />
     <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_hair_ds.shader" />
     <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_hada.shader" />
@@ -103,6 +104,7 @@
     <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_hada_blend.shader" />
     <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_eye.shader" />
     <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_hair.shader" />
+    <None Include="Assets\Town\Readme FIRST!.txt" />
     <None Include="Assets\Resources\Arts\UnityChan\Shader\Unitychan_chara_eye_blend.shader" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2019.3.15f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
