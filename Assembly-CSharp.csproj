@@ -73,7 +73,6 @@
     <Compile Include="Assets\Scripts\Managers\Poolable.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneManagerEx.cs" />
-    <Compile Include="Assets\Scripts\Managers\SceneMangerEx.cs" />
     <Compile Include="Assets\Scripts\Managers\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\PrefabTest.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="Assets\Scripts\Utils\Util.cs" />
     <Compile Include="Assets\Scripts\note_vector.cs" />
     <None Include="Assets\Resources\Art\UnityChan\Shader\Unitychan_chara_fuku.shader" />
+    <None Include="Assets\Town\Readme.txt" />
     <None Include="Assets\Resources\Art\UnityChan\Shader\Unitychan_chara_akarami_blend.shader" />
     <None Include="Assets\Resources\Art\UnityChan\Shader\Unitychan_chara_hair_ds.shader" />
     <None Include="Assets\Resources\Art\UnityChan\Shader\Unitychan_chara_hada.shader" />

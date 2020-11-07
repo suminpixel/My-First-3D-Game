@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /*
 class Tank
@@ -62,14 +63,26 @@ public class PlayerController : MonoBehaviour
 
         Vector3 dir = _desPos - transform.position; //클릭한 위치 - 현재 사용자의 위치 = 방향 벡터
 
-        if(dir.magnitude < 0.0001f){ 
+        if(dir.magnitude < 0.1f){ 
             //거리가 클릭 위치와 가까워졌다면 멈춤
             _state = PlayerState.Idle;
         }else{
-            
+            // 길찾기를 하는 컴포넌트 => NavMeshAgent
+            NavMeshAgent nma = gameObject.GetOrAddComponent<NavMeshAgent>();
+   
             float moveDist = Mathf.Clamp(_speed * Time.deltaTime, 0, dir.magnitude); //min~max 사이의 값
-    
-            transform.position += dir.normalized * moveDist;
+
+            //Navmeshagent.move => mash 중 내가 갈수있는 지역에만 접근 가능
+            nma.Move(dir.normalized * moveDist);
+
+            Debug.DrawRay(transform.position + Vector3.up * 0.5f, dir.normalized, Color.green);
+
+            //Block 인 Layer에 닿으면 멈춤처리 
+            if (Physics.Raycast(transform.position + Vector3.up * 0.5f, dir, 1.0f, LayerMask.GetMask("Block"))){
+                _state = PlayerState.Idle;
+                return;
+            }
+           
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
         
         }

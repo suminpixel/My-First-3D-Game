@@ -14,7 +14,7 @@ public class Managers : MonoBehaviour
 
     //기타 매니저들 인스턴스 생성 및 연결
     InputManager _input = new InputManager();
-    SceneMangersEx _scene = new SceneMangersEx();
+    SceneManagerEx _scene = new SceneManagerEx();
     ResourceManager _resorce = new ResourceManager();
     UIManager _ui = new UIManager();
     SoundManager _sound = new SoundManager();
@@ -25,7 +25,7 @@ public class Managers : MonoBehaviour
     public static InputManager Input{ get{return Instance._input;} }
     public static ResourceManager Resource{ get{return Instance._resorce;}}
     public static UIManager UI{ get{return Instance._ui;}}
-    public static SceneMangersEx Scene{ get{return Instance._scene;}}
+    public static SceneManagerEx Scene { get{return Instance._scene;}}
     public static SoundManager Sound{ get{return Instance._sound;} }
     public static PoolManager Pool{get{return Instance._pool;}}
     public static DataManager Data { get { return Instance._data; } }

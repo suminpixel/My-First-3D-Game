@@ -1,16 +1,18 @@
 ﻿<Properties StartupConfiguration="{A4A51FAC-E02C-9CAD-B603-9F83F78A1F13}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/Scene/UI_Inven.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/PlayerController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Scenes/GameScene.cs" Line="17" Column="41" />
-      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" />
-      <File FileName="Assets/Scripts/Scenes/LoginScene.cs" />
+      <File FileName="Assets/Scripts/Scenes/BaseScene.cs" Line="1" Column="1" IsPinned="True" />
+      <File FileName="Assets/Scripts/Managers/UIManager.cs" IsPinned="True" />
+      <File FileName="Assets/Scripts/UI/UI_EventHandler.cs" IsPinned="True" />
+      <File FileName="Assets/Scripts/UI/Scene/UI_Scene.cs" />
+      <File FileName="Assets/Scripts/UI/Scene/UI_Inven.cs" />
       <File FileName="Assets/Scripts/Managers/Managers.cs" />
+      <File FileName="Assets/Scripts/Managers/SceneManagerEx.cs" />
+      <File FileName="Assets/Scripts/Managers/SoundManager.cs" />
+      <File FileName="Assets/Scripts/Managers/ResourceManager.cs" />
       <File FileName="Assets/Scripts/Managers/InputManager.cs" />
-      <File FileName="Assets/Scripts/Scenes/BaseScene.cs" />
-      <File FileName="Assets/Scripts/Managers/UIManager.cs" />
-      <File FileName="Assets/Scripts/UI/UI_EventHandler.cs" />
-      <File FileName="Assets/Scripts/UI/Scene/UI_Scene.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/Scene/UI_Inven.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/UI_Base.cs" />
+      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="81" Column="112" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,12 +20,14 @@
           <Node name="study-unity" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
+                <Node name="Controllers" expanded="True">
+                  <Node name="PlayerController.cs" selected="True" />
+                </Node>
+                <Node name="Managers" expanded="True" />
                 <Node name="Scenes" expanded="True" />
                 <Node name="UI" expanded="True">
                   <Node name="Popup" expanded="True" />
-                  <Node name="Scene" expanded="True">
-                    <Node name="UI_Inven.cs" selected="True" />
-                  </Node>
+                  <Node name="Scene" expanded="True" />
                 </Node>
                 <Node name="Utils" expanded="True" />
               </Node>
