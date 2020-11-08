@@ -535,6 +535,7 @@ GameObject:
   - component: {fileID: 3667268584709994387}
   - component: {fileID: 3667268584709994390}
   - component: {fileID: 3667268584709994388}
+  - component: {fileID: 3043112149262661122}
   m_Layer: 0
   m_Name: UnityChan
   m_TagString: Untagged
@@ -647,6 +648,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &3043112149262661122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3667268584709994391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353e59a6bd9a340bf8bfb4a3f4118d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 0
+  _hp: 0
+  _maxHp: 0
+  _attack: 0
+  _defense: 0
+  _speed: 0
+  _exp: 0
+  _gold: 0
 --- !u!1 &3667268584718687860
 GameObject:
   m_ObjectHideFlags: 0
