@@ -27,6 +27,7 @@ public class GameScene : BaseScene
         //임시로 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 
+        gameObject.GetOrAddComponent<CursorController>();
     }
 
     /*

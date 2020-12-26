@@ -4,18 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-//키보드 컨트롤 매니저 
+//키보드 컨트롤 / 마우스 컨트롤 관련 매니저
+/*
+왜 Input.GetMouseButton(0) 등으로 쓰지 않고 인풋 매니저 쓰는가?
+취향차이 or 유니티에서 지원하지 않는 조금더 디테일한 동작들 PressUp 등을 사용하기 위해
+*/
 public class InputManager 
 {
     public Action KeyAction = null; // need 'import Stystem'
     public Action<Define.MouseEvent> MouseAction = null;
-    bool _pressed = false; 
+    bool _pressed = false;
+    float _pressedTime = 0; //마우스를 길게 누르는 pressUp 등을 받기 위해 시간 잼
 
     public void OnUpdate()
     {
         // 버튼, UI 클릭은 무시
         if(EventSystem.current.IsPointerOverGameObject()){
-            Debug.Log("UI 영역 클릭");
+           // Debug.Log("UI 영역 클릭");
            // return;
         }
        
@@ -30,14 +35,29 @@ public class InputManager
         {
             if (Input.GetMouseButton(0))
             {
+                if (!_pressed) {
+                    MouseAction.Invoke(Define.MouseEvent.PointerDown);
+                    _pressedTime = Time.time;
+                }
                 MouseAction.Invoke(Define.MouseEvent.Press);
                 _pressed = true;
             }
             else
             {
                 if (_pressed)
-                    MouseAction.Invoke(Define.MouseEvent.Click);
+                {
+                    if (Time.time < _pressedTime + 0.2f)
+                    {
+                        MouseAction.Invoke(Define.MouseEvent.Click);
+                    }
+                    else
+                    {
+                        MouseAction.Invoke(Define.MouseEvent.PointerUp);
+                    }
+
+                }
                 _pressed = false;
+                _pressedTime = 0;
             }
         }
 
