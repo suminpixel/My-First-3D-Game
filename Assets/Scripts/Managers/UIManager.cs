@@ -105,8 +105,27 @@ public class UIManager
         }
     }
 
+
+    // WorldSpace 에 존재하는 컴포를 붙임
+    public T MakeWorldSpaceUI<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        	if (string.IsNullOrEmpty(name))
+			name = typeof(T).Name;
+
+		GameObject go = Managers.Resource.Instantiate($"UI/WorldSpace/{name}");
+		if (parent != null)
+			go.transform.SetParent(parent);
+
+        Canvas canvas = go.GetOrAddComponent<Canvas>();
+        canvas.renderMode = RenderMode.WorldSpace;
+        canvas.worldCamera = Camera.main;
+
+		return Util.GetOrAddComponent<T>(go);
+    }
+
+
     // SubItem/ 폴더에 존재하는 UI 컴포, 아이템들을 생성(리턴)
-	public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
+    public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
 	{
 		if (string.IsNullOrEmpty(name))
 			name = typeof(T).Name;

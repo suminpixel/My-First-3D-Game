@@ -70,6 +70,9 @@ public class PlayerController : MonoBehaviour
         _stat = gameObject.GetComponent<PlayerStat>();
         Managers.Input.MouseAction -= OnMouseEvent; //다른 곳에서 구독하고 있는 경우를 방지하기 위해 우선 -- 후 +
         Managers.Input.MouseAction += OnMouseEvent;
+
+        Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
+
         /*
         * 키보드의 경우..
         * Managers.Input.KeyAction -= OnKeyboard;

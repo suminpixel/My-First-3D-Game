@@ -19,7 +19,14 @@ public abstract class UI_Base : MonoBehaviour
 
     
     public abstract void Init();
-    
+
+    private void Start()
+    {
+        Debug.Log("Init() UI Base");
+        Init(); 
+    }
+
+
     //_object 필드에 특정 타입의 UI컴포넌트를 배열로 삽입
     protected void Bind<T>(Type type) where T :UnityEngine.Object{
         

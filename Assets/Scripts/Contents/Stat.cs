@@ -29,7 +29,7 @@ public class Stat : MonoBehaviour
         //원래 여기서 서버에서 데이터 받아와야하나
         //일단 더미데이터로 쑤셔넣기
         _level = 1;
-        _hp = 100;
+        _hp = 30;
         _maxHp = 100;
         _attack = 5;
         _moveSpeed = 5.0f;
