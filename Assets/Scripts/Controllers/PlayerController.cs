@@ -9,60 +9,15 @@ using UnityEngine.AI;
 // 2. speed, isAttack 등의 key 로 직접 제어 => 스킬, 애니메이션 종륟가 많아졌을때 제어 복잡
 // 선택할 수 있다.
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : BaseController
 {
-    public enum PlayerState
-    {   //다양한 애니메이션 상태 state 를 정리한것 : State Machine
-        Die,
-        Moving,
-        Idle,
-        Skill, //공격, 치유 등 (추후 분리하던지..)
-        //Channeling,
-        //Jumping,
-        //Falling,
-    }
-
+    
     int _layerMask = (1 << (int)Define.Layer.Ground) | (1 << (int)Define.Layer.Monster);
 
     PlayerStat _stat;
-    Vector3 _desPos;
+    bool _stopSkill = false;
 
-    [SerializeField]
-    PlayerState _state = PlayerState.Idle; //플레이어의 기본상태
-
-    GameObject _lockTarget;
-
-
-    public PlayerState State
-    {
-        get { return _state; }
-        set
-        {
-            _state = value;
-            Animator anim = GetComponent<Animator>();
-            switch (_state)
-            {
-                case PlayerState.Idle:
-                    anim.CrossFade("WAIT", 0.1f);
-                    //anim.SetBool("attack", true);
-                    break;
-                case PlayerState.Moving:
-                    anim.CrossFade("RUN", 0.1f);
-                    //anim.SetBool("attack", true);
-                    //anim.SetFloat("speed", _stat.MoveSpeed);
-                    break;
-                case PlayerState.Skill:
-                    anim.CrossFade("ATTACK", 0.1f, -1, 0); //반복 액션 제거
-                    //anim.SetBool("attack", true);
-                    break;
-                case PlayerState.Die:
-                    break;
-            }
-        }
-    }
-
-
-    void Start()
+    public override void Init()
     {
    
         //Input Manager 구독
@@ -80,27 +35,39 @@ public class PlayerController : MonoBehaviour
         */
     }
 
-
-    void UpdateDie() {
-        // TODO : 죽었을 때 처리 아무것도 못함
-    }
-
     void OnHitEvent()
     {
-        Debug.Log("OnHitEvent");
+        //공격 이벤트
+        //tip ? 배틀매니저를 사용하여 양쪽의 stat을 받아 만드는 방법도 있으나, 그렇지 않은경우 몬스터(상대방)옵젝이 알아서 데미지를 갱신하는게 좋음 (몬스터 컨트롤러)
+
+        if (_lockTarget != null) {
+
+            Stat targetStat = _lockTarget.GetComponent<Stat>();
+            PlayerStat myStat = gameObject.GetComponent<PlayerStat>();
+
+            int damage = Mathf.Max(0, myStat.Attack - targetStat.Defense);
+            Debug.Log(damage);
+
+            targetStat.Hp -= damage;
+
+            _stopSkill = false;
+        }
+
+
+        Debug.Log("OnHitEvent");                    
         //때리고있었다면 Idle 로 가지 않고 계속 때리고 걷다가였으면 idle
         if (_stopSkill)
         {
-            State = PlayerState.Idle;
+            State = Define.State.Idle;
         }
         else
         {
-            State = PlayerState.Skill;
+            State = Define.State.Skill;
         }
     }
 
-    void UpdateSkill() {
-        Debug.Log("update skill");
+    protected override void UpdateSkill() {
+        //Debug.Log("update skill");
         if (_lockTarget != null) 
         {
             //타겟 방향으로 플레이어 방향(벡터ㄹ)를 돌림
@@ -110,16 +77,17 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    void UpdateMoving() {
+
+    protected override void UpdateMoving() {
 
         //몬스터가 내 사정거리 안에 들어오면 공격
         if (_lockTarget != null)
         {
             _desPos = _lockTarget.transform.position;
             float distance = (_desPos - transform.position).magnitude;
-            if (distance <= 2)
+            if (distance <= 1)
             {
-                State = PlayerState.Skill;
+                State = Define.State.Skill;
                 return;
             }
         }
@@ -129,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
         if (dir.magnitude < 0.1f) {
             //거리가 클릭 위치와 가까워졌다면 멈춤
-            State = PlayerState.Idle;
+            State = Define.State.Idle;
         } else {
             // 길찾기를 하는 컴포넌트 => NavMeshAgent
             NavMeshAgent nma = gameObject.GetOrAddComponent<NavMeshAgent>();
@@ -144,7 +112,7 @@ public class PlayerController : MonoBehaviour
             //Block 인 Layer에 닿으면 멈춤처리 
             if (Physics.Raycast(transform.position + Vector3.up * 0.5f, dir, 1.0f, LayerMask.GetMask("Block"))) {
                 if (Input.GetMouseButton(0) == false) {
-                    State = PlayerState.Idle;
+                    State = Define.State.Idle;
                 }
                 return;
             }
@@ -155,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
 
         /*
-        if(_state == PlayerState.Moving){//움직이고 있다면 
+        if(_state == Define.State.Moving){//움직이고 있다면 
             //wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime); //0에서 1사이의 값을 섞음 (Lerp)
             //Animator anim = GetComponent<Animator>();
             //anim.SetFloat("wait_run_ratio", wait_run_ratio); //블랜드한 애니메이션의 변수를 조작 
@@ -168,47 +136,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void UpdateIdle() {
-
-
-
-        //ㅌㅊwait_run_ratio = Mathf.Lerp(wait_run_ratio, 0, 10.0f * Time.deltaTime); //0에서 1사이의 값을 섞음
-        //anim.SetFloat("wait_run_ratio", wait_run_ratio); //블랜드한 애니메이션의 변수를 조작
-        //anim.Play("WAIT_RUN");
-
-    }
-
-    void Update() {
-
-        switch (_state) {
-            case PlayerState.Die:
-                UpdateDie();
-                break;
-            case PlayerState.Moving:
-                UpdateMoving();
-                break;
-            case PlayerState.Idle:
-                UpdateIdle();
-                break;
-            case PlayerState.Skill:
-                UpdateSkill();
-                break;
-        }
-    }
-
-
-    bool _stopSkill = false;
     void OnMouseEvent(Define.MouseEvent evt)
     {
         switch (State)
         {
-            case PlayerState.Idle:
+            case Define.State.Idle:
                 OnMouseEvent_IdleRun(evt);
                 break;
-            case PlayerState.Moving:
+            case Define.State.Moving:
                 OnMouseEvent_IdleRun(evt);
                 break;
-            case PlayerState.Skill:
+            case Define.State.Skill:
                 {
                     if (evt == Define.MouseEvent.PointerUp)
                         _stopSkill = true;
@@ -241,12 +179,11 @@ public class PlayerController : MonoBehaviour
                     if (raycastHit)
                     {
                         _desPos = hit.point;
-                        State = PlayerState.Moving;
+                        State = Define.State.Moving;
                         Debug.Log($"레이캐스트 : {hit.collider.gameObject.tag} / {hit.collider.gameObject.name}");
                         _stopSkill = false;
 
-                        if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
-                        {
+                        if (hit.collider.gameObject.layer == (int)Define.Layer.Monster){
                             Debug.Log("Monster Click!");
                             _lockTarget = hit.collider.gameObject; //몬스터 타겟 저장
                             //TODO : 몬스터 커리시 공격처리

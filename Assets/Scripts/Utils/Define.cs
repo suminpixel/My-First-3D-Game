@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Define 
 {
+    public enum State
+    {   //다양한 애니메이션 상태 state 를 정리한것 : State Machine
+        Die,
+        Moving,
+        Idle,
+        Skill, //공격, 치유 등 (추후 분리하던지..)
+        //Channeling,
+        //Jumping,
+        //Falling,
+    }
     public enum Layer {
         Monster = 8,
         Ground = 9,
@@ -36,4 +46,5 @@ public class Define
     public enum CameraMode{
         QuaterView,
     }
+
 }
