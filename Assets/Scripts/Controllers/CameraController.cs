@@ -13,6 +13,10 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     GameObject _player = null;
 
+    public void SetPlayer(GameObject player) {
+        _player = player;
+    }
+
     void Start()
     {
         
@@ -29,9 +33,9 @@ public class CameraController : MonoBehaviour
         if(_mode == Define.CameraMode.QuaterView){
 
             //플레이어 및 몬스터 사망시
-            //유니티가 메모리에서 들고는 있을텐데 null 체크때 null 로 인식할수 있도록 해줌
-            if (_player == null) {
-
+            //!!핵심 내용 => 유니티가 메모리에서 들고는 있을텐데 null 체크때 null 로 인식할수 있도록 해줌
+           
+            if (_player.isValid() == false) {
                 return;
             }
 

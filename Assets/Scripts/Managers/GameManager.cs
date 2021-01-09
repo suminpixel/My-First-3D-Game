@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     GameObject _player;
 
     //스폰
-    public GameObject Spawn(Define.WorldObject type, string path, Transform parant = null)
+    public GameObject Spawn(Define.WorldObject type, string path, Transform parant = null) //서버의 경우 path 가 아닌, 고유 id, number를 던져주면 그 numer로 몬스터 디렉토리스크립트에서 긁어오거나 함 
     {
         GameObject go = Managers.Resource.Instantiate(path, parant);
 

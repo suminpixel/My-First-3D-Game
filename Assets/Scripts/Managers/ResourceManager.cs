@@ -60,6 +60,7 @@ public class ResourceManager
        if(go == null) return;
 
         //만약 풀링하고싶은 녀석이면 풀링매니저에게 위탁함
+        //죽고 사라져야하는 경우 풀링되면 null 쳌에서 에러 있음
         Poolable poolable = go.GetComponent<Poolable>();
         if(poolable != null){
             Managers.Pool.Push(poolable);

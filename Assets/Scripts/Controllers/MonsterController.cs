@@ -18,7 +18,7 @@ public class MonsterController : BaseController
     {
         WorldObjectType = Define.WorldObject.Monster;
 
-        _stat = gameObject.GetComponent<PlayerStat>();
+        _stat = gameObject.GetComponent<Stat>();
 
         if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
             Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
@@ -66,27 +66,24 @@ public class MonsterController : BaseController
         }
 
         Vector3 dir = _desPos - transform.position;
-
         if (dir.magnitude < 0.1f)
         {
-            //거리가 클릭 위치와 가까워졌다면 멈춤
             State = Define.State.Idle;
         }
-        else{
-            // 길찾기를 하는 컴포넌트 => 캐릭터와 달리 지정된 위치로 이동
+        else
+        {
             NavMeshAgent nma = gameObject.GetOrAddComponent<NavMeshAgent>();
             nma.SetDestination(_desPos);
             nma.speed = _stat.MoveSpeed;
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
-
-        };
+        }
 
     }
 
     protected override void UpdateSkill()
     {
-        Debug.Log("Monster UpdateSkill");
+        //Debug.Log("Monster UpdateSkill");
         //Debug.Log("update skill");
         if (_lockTarget != null)
         {
@@ -110,7 +107,8 @@ public class MonsterController : BaseController
 
             if (targetStat.Hp <= 0)
             {
-                GameObject.Destroy(targetStat.gameObject);
+                //난죽택
+                Managers.Game.Despawn(targetStat.gameObject);
             }
 
             if (targetStat.Hp > 0)

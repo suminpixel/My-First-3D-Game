@@ -16,4 +16,9 @@ public static class Extension
 		UI_Base.BindEvent(go, action, type);
 	}
 
+	//해당 옵젝이 유효한 상태인지 (죽음)
+	public static bool isValid(this GameObject go) {
+		return go != null && go.activeSelf;
+	}
+
 }

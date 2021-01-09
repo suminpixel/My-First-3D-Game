@@ -93,6 +93,7 @@ public class PlayerController : BaseController
 
         //이동처리
         Vector3 dir = _desPos - transform.position; //클릭한 위치 - 현재 사용자의 위치 = 방향 벡터
+        dir.y = 0;
 
         if (dir.magnitude < 0.1f) {
             //거리가 클릭 위치와 가까워졌다면 멈춤
