@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Define 
 {
+    public enum WorldObject
+    {
+        UnKnown,
+        Player,
+        Monster
+    }
     public enum State
     {   //다양한 애니메이션 상태 state 를 정리한것 : State Machine
         Die,

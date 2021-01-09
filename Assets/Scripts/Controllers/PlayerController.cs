@@ -19,7 +19,8 @@ public class PlayerController : BaseController
 
     public override void Init()
     {
-   
+
+        WorldObjectType = Define.WorldObject.Player;
         //Input Manager 구독
 
         _stat = gameObject.GetComponent<PlayerStat>();
@@ -49,8 +50,6 @@ public class PlayerController : BaseController
             Debug.Log(damage);
 
             targetStat.Hp -= damage;
-
-            _stopSkill = false;
         }
 
 
@@ -99,13 +98,11 @@ public class PlayerController : BaseController
             //거리가 클릭 위치와 가까워졌다면 멈춤
             State = Define.State.Idle;
         } else {
-            // 길찾기를 하는 컴포넌트 => NavMeshAgent
-            NavMeshAgent nma = gameObject.GetOrAddComponent<NavMeshAgent>();
+            //길찾기를 하는 컴포넌트 => NavMeshAgent
 
-            float moveDist = Mathf.Clamp(_stat.MoveSpeed * Time.deltaTime, 0, dir.magnitude); //min~max 사이의 값
-
-            //Navmeshagent.move => mash 중 내가 갈수있는 지역에만 접근 가능
-            nma.Move(dir.normalized * moveDist);
+            //NavMeshAgent nma = gameObject.GetOrAddComponent<NavMeshAgent>();
+            //float moveDist = Mathf.Clamp(_stat.MoveSpeed * Time.deltaTime, 0, dir.magnitude); //min~max 사이의 값
+            //nma.Move(dir.normalized * moveDist);//Navmeshagent.move => mash 중 내가 갈수있는 지역에만 접근 가능
 
             Debug.DrawRay(transform.position + Vector3.up * 0.5f, dir.normalized, Color.green);
 
@@ -117,6 +114,8 @@ public class PlayerController : BaseController
                 return;
             }
 
+            float moveDist = Mathf.Clamp(_stat.MoveSpeed * Time.deltaTime, 0, dir.magnitude);
+            transform.position += dir.normalized * moveDist;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
 
         }

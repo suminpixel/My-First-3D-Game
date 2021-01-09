@@ -22,10 +22,20 @@ public class CameraController : MonoBehaviour
     //카메라 이동과 캐릭터 이동 순서가 충돌하여 버벅거리는 현상이 있을 수 있어, 
     //업데이트 이후 카메라 이동하여 해당 현상 해결
   
-    void LateUpdate() 
+    void LateUpdate()
+
     {
         
         if(_mode == Define.CameraMode.QuaterView){
+
+            //플레이어 및 몬스터 사망시
+            //유니티가 메모리에서 들고는 있을텐데 null 체크때 null 로 인식할수 있도록 해줌
+            if (_player == null) {
+
+                return;
+            }
+
+
             RaycastHit hit;
             
             Debug.DrawRay(Camera.main.transform.position, _player.transform.position * 200.0f, Color.red, 1.0f);

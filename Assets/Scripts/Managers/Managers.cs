@@ -21,6 +21,8 @@ public class Managers : MonoBehaviour
     PoolManager _pool = new PoolManager();
     DataManager _data = new DataManager();
 
+    GameManager _game = new GameManager();
+
 
     public static InputManager Input{ get{return Instance._input;} }
     public static ResourceManager Resource{ get{return Instance._resorce;}}
@@ -29,6 +31,8 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound{ get{return Instance._sound;} }
     public static PoolManager Pool{get{return Instance._pool;}}
     public static DataManager Data { get { return Instance._data; } }
+
+    public static GameManager Game { get { return Instance._game;  } }
 
 
     void Start()

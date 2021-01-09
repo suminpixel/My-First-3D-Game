@@ -1,35 +1,26 @@
 ﻿<Properties StartupConfiguration="{A4A51FAC-E02C-9CAD-B603-9F83F78A1F13}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/GameManager.cs">
     <Files>
       <File FileName="Assets/Scripts/Data/Data.Contents.cs" Line="1" Column="1" IsPinned="True" />
-      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="14" Column="5" />
-      <File FileName="Assets/Scripts/Controllers/BaseController.cs" Line="46" Column="1" />
-      <File FileName="Assets/Scripts/Controllers/MonsterController.cs" Line="7" Column="5" />
+      <File FileName="Assets/Scripts/Controllers/PlayerController.cs" Line="20" Column="32" />
+      <File FileName="Assets/Scripts/Controllers/BaseController.cs" Line="18" Column="100" />
+      <File FileName="Assets/Scripts/Controllers/MonsterController.cs" Line="19" Column="50" />
+      <File FileName="Assets/Scripts/Controllers/CameraController.cs" Line="32" Column="62" />
+      <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="51" Column="42" />
+      <File FileName="Assets/Scripts/Managers/Managers.cs" Line="23" Column="1" />
+      <File FileName="Assets/Scripts/Utils/Define.cs" Line="9" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="study-unity" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Resources" expanded="True">
-                <Node name="Animations" expanded="True" />
-                <Node name="Prefabs" expanded="True" />
-                <Node name="Sounds" expanded="True" />
-              </Node>
-              <Node name="Scenes" expanded="True" />
+              <Node name="Resources" expanded="True" />
               <Node name="Scripts" expanded="True">
-                <Node name="Contents" expanded="True" />
-                <Node name="Controllers" expanded="True">
-                  <Node name="PlayerController.cs" selected="True" />
-                </Node>
+                <Node name="Controllers" expanded="True" />
                 <Node name="Data" expanded="True" />
-                <Node name="Managers" expanded="True" />
-                <Node name="Scenes" expanded="True" />
-                <Node name="UI" expanded="True">
-                  <Node name="Popup" expanded="True" />
-                  <Node name="Scene" expanded="True" />
-                  <Node name="SubItem" expanded="True" />
-                  <Node name="WorldSpace" expanded="True" />
+                <Node name="Managers" expanded="True">
+                  <Node name="GameManager.cs" selected="True" />
                 </Node>
                 <Node name="Utils" expanded="True" />
               </Node>

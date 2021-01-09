@@ -1779,7 +1779,7 @@ GameObject:
   - component: {fileID: 2703286782983351295}
   m_Layer: 8
   m_Name: Knight
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
