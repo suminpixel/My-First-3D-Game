@@ -44,12 +44,9 @@ public class PlayerController : BaseController
         if (_lockTarget != null) {
 
             Stat targetStat = _lockTarget.GetComponent<Stat>();
-            PlayerStat myStat = gameObject.GetComponent<PlayerStat>();
+            targetStat.OnAttacked(_stat);
 
-            int damage = Mathf.Max(0, myStat.Attack - targetStat.Defense);
-            Debug.Log(damage);
-
-            targetStat.Hp -= damage;
+         
         }
 
 
@@ -67,14 +64,17 @@ public class PlayerController : BaseController
 
     protected override void UpdateSkill() {
         //Debug.Log("update skill");
-        if (_lockTarget != null) 
+        if (_lockTarget != null)
         {
             //타겟 방향으로 플레이어 방향(벡터ㄹ)를 돌림
             Vector3 dir = _lockTarget.transform.position - transform.position;
             Quaternion quat = Quaternion.LookRotation(dir);
             transform.rotation = Quaternion.Lerp(transform.rotation, quat, 20 * Time.deltaTime);
         }
-
+        else {
+            _stopSkill = true;
+        }
+        
     }
 
     protected override void UpdateMoving() {

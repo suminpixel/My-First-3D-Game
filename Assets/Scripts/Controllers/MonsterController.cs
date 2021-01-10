@@ -13,7 +13,6 @@ public class MonsterController : BaseController
     [SerializeField]
     float _attackRange = 2; //공격 사정거리
 
-
     public override void Init()
     {
         WorldObjectType = Define.WorldObject.Monster;
@@ -28,9 +27,13 @@ public class MonsterController : BaseController
 
     protected override void UpdateIdle()
     {
-        Debug.Log("Monster UpdateIdle");
+       // Debug.Log("Monster UpdateIdle");
         //TODO: 매니저가 생기면 옮길것.
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        //if (player == null) return;
+
+        GameObject player = Managers.Game.GetPlayer();
 
         if (player == null) return;
 
@@ -48,7 +51,7 @@ public class MonsterController : BaseController
 
     protected override void UpdateMoving()
     {
-        Debug.Log("Monster UpdateMoving");
+        //Debug.Log("Monster UpdateMoving");
 
         //사정거리 안에 들어오면 공격
         if (_lockTarget != null)
@@ -96,20 +99,15 @@ public class MonsterController : BaseController
 
     void OnHitEvent()
     {
-        Debug.Log("Monster OnHitEvent");
-
+        //Debug.Log("Monster OnHitEvent");
+        return;
         if (_lockTarget != null)
         {
 
+            //tip : 공격은 공격자가 계산해서 피해자에게 던져주는게 나음
             Stat targetStat = _lockTarget.GetComponent<Stat>();
-            int damage = Mathf.Max(0, _stat.Attack - targetStat.Defense);
-            targetStat.Hp -= damage;
 
-            if (targetStat.Hp <= 0)
-            {
-                //난죽택
-                Managers.Game.Despawn(targetStat.gameObject);
-            }
+            targetStat.OnAttacked(_stat);
 
             if (targetStat.Hp > 0)
             {

@@ -3228,7 +3228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _level: 0
   _hp: 0
-  _maxHp: 0
+  _maxHp: 200
   _attack: 0
   _defense: 0
   _moveSpeed: 0

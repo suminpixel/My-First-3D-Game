@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
             Debug.DrawRay(Camera.main.transform.position, _player.transform.position * 200.0f, Color.red, 1.0f);
      
             // 카메라가 쏘는 레이캐스팅에 벽이 걸려든 경우
-            if(Physics.Raycast(_player.transform.position, _delta, out hit, _delta.magnitude, LayerMask.GetMask("Wall"))){
+            if(Physics.Raycast(_player.transform.position, _delta, out hit, _delta.magnitude, LayerMask.GetMask("Block"))){ //LayerMask.GetMask("Block") <=> 1 << (int)Define.Layer.Blaock    
                 //Debug.Log("-- (Wall) zoom move ");
                 float dist = (hit.point - _player.transform.position).magnitude * 0.8f;
                 transform.position = _player.transform.position + _delta.normalized * dist;
